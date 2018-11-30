@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customers")
@@ -37,11 +38,37 @@ public class CustomerServlet extends HttpServlet {
                 deleteCustomer(request, response);
                 break;
             }
+
             default: {
+                searchCustomer(request, response);
                 break;
             }
         }
     }
+
+    private void searchCustomer(HttpServletRequest request, HttpServletResponse response) {
+        String search = request.getParameter("txtSearch");
+        List<Customer> lstCustomer = this.customerService.findAll();
+        List<Customer> resCustomer = new ArrayList<>();
+
+        for (Customer item : lstCustomer) {
+            if(item.getName().equals(search)){
+                resCustomer.add(item);
+            }
+        }
+
+        request.setAttribute("customers", resCustomer);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/list.jsp");
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));

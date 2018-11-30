@@ -16,6 +16,12 @@
 <p>
     <a href="/customers?action=create">Create new customer</a>
 </p>
+
+<form method="post">
+    <input type="text" name="txtSearch" id="txtSearch">
+    <button type="submit">Search</button>
+</form>
+
 <table border="1">
     <tr>
         <td>Name</td>
