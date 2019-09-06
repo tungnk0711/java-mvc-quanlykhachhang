@@ -19,14 +19,14 @@
 <body>
 <h1>Create new customer</h1>
 <p>
-    <c:if test='${requestScope["message"]!= null}'>
-        <span class="message">${requestScope["message"]}</span>
+    <c:if test='${requestScope["m"]!= null}'>
+        <span class="message">${requestScope["m"]}</span>
     </c:if>
 </p>
 <p>
     <a href="/customers">Back to customer list</a>
 </p>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Customer Information</legend>
         <table>
@@ -41,6 +41,10 @@
             <tr>
                 <td>Address:</td>
                 <td><input type="text" name="address" id="address"></td>
+            </tr>
+            <tr>
+                <td>Avatar:</td>
+                <td><input type="file" name="avatar" id="avatar"></td>
             </tr>
             <tr>
                 <td></td>

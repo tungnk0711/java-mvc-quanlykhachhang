@@ -27,6 +27,7 @@
         <td>Name</td>
         <td>Email</td>
         <td>Address</td>
+        <td>Avatar</td>
         <td>Edit</td>
         <td>Delete</td>
     </tr>
@@ -35,6 +36,7 @@
             <td>${customer.getName()}</td>
             <td>${customer.getEmail()}</td>
             <td>${customer.getAddress()}</td>
+            <td><img src="<%=request.getContextPath()%>/images/${customer.getAvatar()}"></td>
             <td><a href="/customers?action=edit&id=${customer.getId()}">Edit</a></td>
             <td><a href="/customers?action=delete&id=${customer.getId()}">Delete</a></td>
         </tr>
